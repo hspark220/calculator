@@ -37,7 +37,23 @@ const subtract = (num1, num2) => num1-num2;
 const multiply = (num1, num2) => num1*num2;
 const divide = (num1, num2) => num1/num2;
 
-const operator = (operation, num1, num2) => operation(num1,num2);
+const operator = (operationString, num1, num2) => {
+    switch (operationString) {
+        case "multiply":
+            return multiply(num1,num2);
+            break;
+        case "divide":
+            return divide(num1,num2);
+            break;
+        case "subtract":
+            return subtract(num1,num2);
+            break;
+        case "add":
+            return add(num1,num2)
+            break;
+    }
+}
+
 
 const popDisplayNum = (e) => {
     const value = e.target.id[1];
@@ -55,26 +71,26 @@ const operation = (e) => {
     operand = e.target.id;
     switch (operand){
         case "multiply":
-            firstNumber = displayValue.join('');
+            firstNumber = +displayValue.join('');
             clearDisplay();
             break;
         case "divide":
-            firstNumber = displayValue.join('');
+            firstNumber = +displayValue.join('');
             clearDisplay();
             break;
         case "subtract":
-            firstNumber = displayValue.join('');
+            firstNumber = +displayValue.join('');
             clearDisplay();
             break;
         case "add":
-            firstNumber = displayValue.join('');
+            firstNumber = +displayValue.join('');
             clearDisplay();
             break;
     }
 }
 
 const operate = (e) => {
-    secondNumber = display.Value.join('');
+    secondNumber = +displayValue.join('');
     const result = operator(operand, firstNumber, secondNumber);
     display.textContent = result;
     firstNumber = null;
