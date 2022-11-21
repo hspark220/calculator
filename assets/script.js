@@ -11,6 +11,19 @@ const b8 = document.querySelector('#b8');
 const b9 = document.querySelector('#b9');
 const b0 = document.querySelector('#b0');
 
+const clear = document.querySelector('#clear');
+const q1 = document.querySelector('#q1');
+const q2 = document.querySelector('#q2');
+const q3 = document.querySelector('#q3');
+
+const divideBtn = document.querySelector('#divide');
+const multiplyBtn = document.querySelector('#multiply');
+const subtractBtn = document.querySelector('#subtract');
+const addBtn = document.querySelector('#add');
+
+const dPointBtn = document.querySelector('#decimal');
+const equalsBtn = document.querySelector('#equals');
+
 const lcdDisplay = document.querySelector('.lcd-display');
 const display = document.createElement('p');
 display.textContent = displayValue.toString();
@@ -29,6 +42,11 @@ const popDisplayNum = (e) => {
     display.textContent = displayValue.join('');
 }
 
+const clearDisplay = (e) => {
+    displayValue = [];
+    display.textContent = displayValue.join('');
+}
+
 b1.addEventListener('click',popDisplayNum);
 b2.addEventListener('click',popDisplayNum);
 b3.addEventListener('click',popDisplayNum);
@@ -39,3 +57,5 @@ b7.addEventListener('click',popDisplayNum);
 b8.addEventListener('click',popDisplayNum);
 b9.addEventListener('click',popDisplayNum);
 b0.addEventListener('click',popDisplayNum);
+
+clear.addEventListener('click',clearDisplay);
