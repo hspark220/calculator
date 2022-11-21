@@ -1,4 +1,7 @@
 let displayValue = [];
+let firstNumber = null;
+let secondNumber = null;
+let operand = null;
 
 const b1 = document.querySelector('#b1');
 const b2 = document.querySelector('#b2');
@@ -47,6 +50,37 @@ const clearDisplay = (e) => {
     display.textContent = displayValue.join('');
 }
 
+const operation = (e) => {
+    console.log(e.target.id);
+    operand = e.target.id;
+    switch (operand){
+        case "multiply":
+            firstNumber = displayValue.join('');
+            clearDisplay();
+            break;
+        case "divide":
+            firstNumber = displayValue.join('');
+            clearDisplay();
+            break;
+        case "subtract":
+            firstNumber = displayValue.join('');
+            clearDisplay();
+            break;
+        case "add":
+            firstNumber = displayValue.join('');
+            clearDisplay();
+            break;
+    }
+}
+
+const operate = (e) => {
+    secondNumber = display.Value.join('');
+    const result = operator(operand, firstNumber, secondNumber);
+    display.textContent = result;
+    firstNumber = null;
+    secondNumber = null;
+}
+
 b1.addEventListener('click',popDisplayNum);
 b2.addEventListener('click',popDisplayNum);
 b3.addEventListener('click',popDisplayNum);
@@ -59,3 +93,9 @@ b9.addEventListener('click',popDisplayNum);
 b0.addEventListener('click',popDisplayNum);
 
 clear.addEventListener('click',clearDisplay);
+equalsBtn.addEventListener('click', operate);
+
+multiplyBtn.addEventListener('click', operation);
+divideBtn.addEventListener('click', operation);
+subtractBtn.addEventListener('click', operation);
+addBtn.addEventListener('click', operation);
