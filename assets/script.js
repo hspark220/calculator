@@ -61,39 +61,35 @@ const popDisplayNum = (e) => {
     display.textContent = displayValue.join('');
 }
 
+const clearDisplayBtn = (e) => {
+    displayValue = [];
+    display.textContent = displayValue.join('');
+    firstNumber = null;
+    secondNumber = null;
+}
+
 const clearDisplay = (e) => {
     displayValue = [];
     display.textContent = displayValue.join('');
 }
 
 const operation = (e) => {
-    console.log(e.target.id);
     operand = e.target.id;
-    switch (operand){
-        case "multiply":
-            firstNumber = +displayValue.join('');
-            clearDisplay();
-            break;
-        case "divide":
-            firstNumber = +displayValue.join('');
-            clearDisplay();
-            break;
-        case "subtract":
-            firstNumber = +displayValue.join('');
-            clearDisplay();
-            break;
-        case "add":
-            firstNumber = +displayValue.join('');
-            clearDisplay();
-            break;
+    if (firstNumber == null) {
+        firstNumber = +displayValue.join('');
+        clearDisplay();
+    } else {
+        clearDisplay();
     }
+    
+    
 }
 
 const operate = (e) => {
     secondNumber = +displayValue.join('');
     const result = operator(operand, firstNumber, secondNumber);
     display.textContent = result;
-    firstNumber = null;
+    firstNumber = result;
     secondNumber = null;
 }
 
@@ -108,7 +104,7 @@ b8.addEventListener('click',popDisplayNum);
 b9.addEventListener('click',popDisplayNum);
 b0.addEventListener('click',popDisplayNum);
 
-clear.addEventListener('click',clearDisplay);
+clear.addEventListener('click',clearDisplayBtn);
 equalsBtn.addEventListener('click', operate);
 
 multiplyBtn.addEventListener('click', operation);
