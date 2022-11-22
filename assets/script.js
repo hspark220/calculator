@@ -1,9 +1,7 @@
 let displayValue = [];
 let firstNumber = null;
 let secondNumber = null;
-let result = null;
 let operand = null;
-let isEmpty = true;
 
 const b1 = document.querySelector('#b1');
 const b2 = document.querySelector('#b2');
@@ -75,16 +73,6 @@ const operator = (operationString, num1, num2) => {
 }
 
 
-const showDisplay = () => {
-    firstNumText.textContent = firstNumber;
-    secondNumText.textContent = secondNumber;
-    operandText.textContent = operand;
-}
-
-const update = () => {
-    
-}
-
 const popDisplayNum = (e) => {
     const value = e.target.id[1];
     displayValue.push(value);
@@ -102,10 +90,6 @@ const clearDisplayBtn = (e) => {
     isEmpty = true;
 }
 
-const clearDisplay = (e) => {
-    displayValue = [];
-    isEmpty = true;
-}
 
 const operation = (e) => {
     if(firstNumber == null) {
