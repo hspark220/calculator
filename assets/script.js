@@ -74,13 +74,21 @@ const operator = (operationString, num1, num2) => {
 
 
 const popDisplayNum = (e) => {
+    if (displayValue.length > 13) {
+        display.textContent = 'too long nerd';
+        return;
+    }
+
     const value = e.target.id[1];
     displayValue.push(value);
     display.textContent = displayValue.join('');
-    
 }
 
 const addPoint = () => {
+    if (displayValue.length > 13) {
+        display.textContent = 'too long nerd';
+        return;
+    }
     if (displayValue.includes('.')) {
         display.textContent = 'nerd, two decimal points';
         return;
@@ -100,6 +108,11 @@ const clearDisplayBtn = (e) => {
 
 
 const operation = (e) => {
+    if (displayValue.length > 13) {
+        display.textContent = 'too long nerd';
+        return;
+    }
+
     if(firstNumber == null) {
         operand = e.target.id;
         operate(); 
@@ -112,7 +125,12 @@ const operation = (e) => {
 }
 
 const operate = (e) => {
-    if((displayValue.length < 1 || displayValue == undefined) && secondNumber == null) {return;}
+    if(displayValue.length < 1 || displayValue == undefined) {return;}
+    if (displayValue.length > 13) {
+        display.textContent = 'too long nerd';
+        return;
+    }
+
 
     if (firstNumber == null) {
         firstNumber = +displayValue.join('');
@@ -120,6 +138,12 @@ const operate = (e) => {
     } else {
         secondNumber = +displayValue.join('');
         const result = operator(operand, firstNumber, secondNumber);
+        console.log(result);
+        if (result > 10000000000000) {
+            display.textContent = 'too long nerd';
+            return;
+        }
+
         display.textContent = result;
         firstNumber = result == 'nice try nerd' ? null : result;
         displayValue = [];
