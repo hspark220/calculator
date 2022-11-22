@@ -152,6 +152,10 @@ const operate = (e) => {
     console.log(`second: ${secondNumber}`);
 }
 
+const backspace = () => {
+    displayValue.pop();
+    display.textContent = displayValue.join('');
+}
 
 
 b1.addEventListener('click',popDisplayNum);
@@ -168,6 +172,7 @@ b0.addEventListener('click',popDisplayNum);
 clear.addEventListener('click',clearDisplayBtn);
 equalsBtn.addEventListener('click', operate);
 dPointBtn.addEventListener('click', addPoint);
+bs.addEventListener('click', backspace);
 
 multiplyBtn.addEventListener('click', operation);
 divideBtn.addEventListener('click', operation);
