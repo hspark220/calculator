@@ -15,9 +15,9 @@ const b9 = document.querySelector('#b9');
 const b0 = document.querySelector('#b0');
 
 const clear = document.querySelector('#clear');
-const q1 = document.querySelector('#q1');
-const q2 = document.querySelector('#q2');
-const q3 = document.querySelector('#q3');
+const nt = document.querySelector('#nt');
+const nerd = document.querySelector('#nerd');
+const bs = document.querySelector('#bs');
 
 const divideBtn = document.querySelector('#divide');
 const multiplyBtn = document.querySelector('#multiply');
@@ -77,7 +77,17 @@ const popDisplayNum = (e) => {
     const value = e.target.id[1];
     displayValue.push(value);
     display.textContent = displayValue.join('');
-    isEmpty = false;
+    
+}
+
+const addPoint = () => {
+    if (displayValue.includes('.')) {
+        display.textContent = 'nerd, two decimal points';
+        return;
+    }
+    console.log(displayValue)
+    displayValue.push('.');
+    display.textContent = displayValue.join('');
 }
 
 const clearDisplayBtn = (e) => {
@@ -85,9 +95,7 @@ const clearDisplayBtn = (e) => {
     display.textContent = displayValue.join('');
     firstNumber = null;
     secondNumber = null;
-    result = null;
     operand = null;
-    isEmpty = true;
 }
 
 
@@ -121,6 +129,7 @@ const operate = (e) => {
 }
 
 
+
 b1.addEventListener('click',popDisplayNum);
 b2.addEventListener('click',popDisplayNum);
 b3.addEventListener('click',popDisplayNum);
@@ -134,10 +143,13 @@ b0.addEventListener('click',popDisplayNum);
 
 clear.addEventListener('click',clearDisplayBtn);
 equalsBtn.addEventListener('click', operate);
+dPointBtn.addEventListener('click', addPoint);
 
 multiplyBtn.addEventListener('click', operation);
 divideBtn.addEventListener('click', operation);
 subtractBtn.addEventListener('click', operation);
 addBtn.addEventListener('click', operation);
+
+
 
 

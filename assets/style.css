@@ -61,6 +61,7 @@ h1 {
 
     background-color: rgb(223, 219, 219);
     text-align: right;
+    overflow: clip;
 }
 
 .lcd-display p{
