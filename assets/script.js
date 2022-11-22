@@ -90,7 +90,7 @@ const addPoint = () => {
         return;
     }
     if (displayValue.includes('.')) {
-        display.textContent = 'nerd, two decimal points';
+        display.textContent = 'two decimal points, nerd';
         return;
     }
     console.log(displayValue)
