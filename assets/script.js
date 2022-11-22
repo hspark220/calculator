@@ -106,6 +106,11 @@ const clearDisplayBtn = (e) => {
     operand = null;
 }
 
+const backspace = () => {
+    displayValue.pop();
+    display.textContent = displayValue.join('');
+}
+
 
 const operation = (e) => {
     if (displayValue.length > 13) {
@@ -152,11 +157,13 @@ const operate = (e) => {
     console.log(`second: ${secondNumber}`);
 }
 
-const backspace = () => {
-    displayValue.pop();
-    display.textContent = displayValue.join('');
+const niceTry = () => {
+    display.textContent = 'nice try';
 }
 
+const nerdBtn = () => {
+    display.textContent = 'nerd';
+}
 
 b1.addEventListener('click',popDisplayNum);
 b2.addEventListener('click',popDisplayNum);
@@ -179,6 +186,7 @@ divideBtn.addEventListener('click', operation);
 subtractBtn.addEventListener('click', operation);
 addBtn.addEventListener('click', operation);
 
-
+nt.addEventListener('click', niceTry);
+nerd.addEventListener('click', nerdBtn);
 
 
