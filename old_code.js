@@ -76,11 +76,12 @@ const showDisplay = () => {
     operandText.textContent = operand;
 }
 
-const update = () => {
-    
-}
-
 const popDisplayNum = (e) => {
+    if(result != null) {
+        clearDisplay();
+        secondNumber = null;
+        result = null;
+    }
     const value = e.target.id[1];
     displayValue.push(value);
     display.textContent = displayValue.join('');
@@ -95,6 +96,7 @@ const clearDisplayBtn = (e) => {
     result = null;
     operand = null;
     isEmpty = true;
+    showDisplay();
 }
 
 const clearDisplay = (e) => {
@@ -103,26 +105,39 @@ const clearDisplay = (e) => {
 }
 
 const operation = (e) => {
-    // if(displayValue.length < 1 || displayValue == undefined) {return;}
+    if (isEmpty == true) {
+        return;
+    }
     operand = e.target.id;
-    operate(); 
-    displayValue = [];
+    if (firstNumber == null && result == null) {
+        firstNumber = +displayValue.join('');
+        clearDisplay();
+    } else if (firstNumber != null) {
+        secondNumber = +displayValue.join('');
+        operate();
+    }
+    showDisplay();
 
 }
 
 const operate = (e) => {
-    if(displayValue.length < 1 || displayValue == undefined) {return;}
-
-    if (firstNumber == null) {
-        firstNumber = +displayValue.join('');
-    } else {
+    if (isEmpty == true) { return; }
+    if (secondNumber == null) {
         secondNumber = +displayValue.join('');
-        const result = operator(operand, firstNumber, secondNumber);
+    }   
+    if (firstNumber != null && secondNumber != null) {
+        result = operator(operand, firstNumber, secondNumber);
         display.textContent = result;
-        firstNumber = result;
+        update();
     }
+    showDisplay();
 }
 
+const update = () => {
+    firstNumber = result;
+    secondNumber = null;
+    result = null;
+}
 
 b1.addEventListener('click',popDisplayNum);
 b2.addEventListener('click',popDisplayNum);
@@ -144,3 +159,57 @@ subtractBtn.addEventListener('click', operation);
 addBtn.addEventListener('click', operation);
 
 
+
+/*
+ * Pseudo code...
+ * 
+ * Number get's pressed
+ *  screen populates
+ *  displayValue get's populated
+ * 
+ * Operation get's pressed
+ *  number get's stored (firstNumber)
+ *  operand get's stored (operand)
+ *  displayValue get's emptied
+ * 
+ * Number get's pressed after operand
+ *  screen and display value populates
+ * 
+ * Equals get's pressed
+ *  number get's stored (secondNumber)
+ *  operation is done accordingly
+ *  firstNumber = result
+ *  displayValue is emptied
+ * 
+ * OR
+ * 
+ * Operation get's pressed
+ *  number get's stored (secondNumber)
+ *  operation is done accordingly
+ *  firstNumber = result
+ *  displayValue is emptied
+ *  operand get's stored
+ * 
+ * Number get's pressed after calculation
+ *  screen and display value popoulates
+ *  
+ * Equals get's pressed
+ *  number get's stored (secondNumber)
+ *  operation is done accordingly
+ *  firstNumber = result
+ *  displayValue is emptied
+ * 
+ * OR
+ * 
+ * Operation get's pressed
+ *  number get's stored (secondNumber)
+ *  operation is done accordingly
+ *  firstNumber = result
+ *  displayValue is emptied
+ *  operand get's stored
+ * 
+ * 
+
+
+
+*/
