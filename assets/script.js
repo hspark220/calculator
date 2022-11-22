@@ -50,7 +50,12 @@ operandDisplay.appendChild(operandText);
 const add = (num1, num2) => num1+num2;
 const subtract = (num1, num2) => num1-num2;
 const multiply = (num1, num2) => num1*num2;
-const divide = (num1, num2) => num1/num2;
+const divide = (num1, num2) => {
+    if (num2 == 0) {
+        return 'nice try nerd';
+    }
+    return num1/num2;
+} 
 
 const operator = (operationString, num1, num2) => {
     switch (operationString) {
@@ -103,24 +108,32 @@ const clearDisplay = (e) => {
 }
 
 const operation = (e) => {
-    // if(displayValue.length < 1 || displayValue == undefined) {return;}
-    operand = e.target.id;
-    operate(); 
-    displayValue = [];
-
+    if(firstNumber == null) {
+        operand = e.target.id;
+        operate(); 
+    } else {
+        operate();
+        operand = e.target.id;
+    }
+    
+    
 }
 
 const operate = (e) => {
-    if(displayValue.length < 1 || displayValue == undefined) {return;}
+    if((displayValue.length < 1 || displayValue == undefined) && secondNumber == null) {return;}
 
     if (firstNumber == null) {
         firstNumber = +displayValue.join('');
+        displayValue = [];
     } else {
         secondNumber = +displayValue.join('');
         const result = operator(operand, firstNumber, secondNumber);
         display.textContent = result;
-        firstNumber = result;
+        firstNumber = result == 'nice try nerd' ? null : result;
+        displayValue = [];
     }
+    console.log(`first: ${firstNumber}`);
+    console.log(`second: ${secondNumber}`);
 }
 
 
